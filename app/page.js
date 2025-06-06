@@ -17,6 +17,7 @@ export default function Home() {
         />
         <p>This is oauth.ara.team</p>
         <p><Link href="/api/auth/providers">View configured OAuth providers</Link></p>
+        <p><Link href="/continue/google">Continue with Google</Link></p>
         <ol>
           <li>
             Get started by editing <code>app/page.js</code>.

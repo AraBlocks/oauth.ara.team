@@ -11,7 +11,11 @@ export const authOptions: NextAuthConfig = {
     GoogleProvider({}),//automatically brings in secrets named AUTH_GOOGLE_ID and AUTH_GOOGLE_SECRET
   ],
 
-  //soon, we'll have a callbacks property here to define custom methods like jwt(), but not yet
+  events: {
+    async signIn({ user, account, profile, isNewUser }) {
+      console.log("✅ User signed in:", user.email, "via", account.provider)
+    },
+  },
 
   // This secret signs your JWTs. In Production, set NEXTAUTH_SECRET in Cloudflare Pages.
   secret: process.env.AUTH_SECRET,
