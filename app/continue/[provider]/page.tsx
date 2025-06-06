@@ -6,7 +6,8 @@ import { useParams } from "next/navigation"
 import { signIn } from "next-auth/react"
 
 export default function ContinuePage() {
-  const { provider } = useParams()
+  const raw = useParams().provider // raw can be string | string[] | undefined
+  const provider = Array.isArray(raw) ? raw[0] : raw
 
   useEffect(() => {
     if (provider) {
@@ -16,9 +17,6 @@ export default function ContinuePage() {
     }
   }, [provider])
 
-  return (
-    <div style={{ padding: "2rem", textAlign: "center" }}>
-      <p>Redirecting you to {provider?.toUpperCase()}…</p>
-    </div>
-  )
+  // Render nothing (blank page)
+  return null
 }
