@@ -1,4 +1,6 @@
+//./app/page.js
 import Image from "next/image";
+import Link from "next/link";
 import styles from "./page.module.css";
 
 export default function Home() {
@@ -14,6 +16,7 @@ export default function Home() {
           priority
         />
         <p>This is oauth.ara.team</p>
+        <p><Link href="/api/auth/providers">View configured OAuth providers</Link></p>
         <ol>
           <li>
             Get started by editing <code>app/page.js</code>.
