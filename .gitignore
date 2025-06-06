@@ -1,0 +1,47 @@
+#node
+node_modules
+
+#serverless framework
+.serverless
+jspm_packages
+
+#cloudflare
+.wrangler
+.dev.vars
+
+#next
+.next
+
+#nuxt
+.output
+.data
+.nuxt
+.nitro
+.cache
+dist
+size
+stats*.html
+
+#secrets
+.env
+.env.*
+*.env
+*.vars
+*.vars.*
+env.js
+card.js
+
+#lock files; forgetting to delete one on a new os would really mess up the build
+package-lock.json
+yarn.lock
+
+#logs and diffs
+logs
+*.log
+*.diff
+diff*.txt
+
+#miscellaneous
+.DS_Store
+.fleet
+.idea
