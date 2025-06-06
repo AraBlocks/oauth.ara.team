@@ -1,4 +1,11 @@
 //./app/page.js
+
+export const metadata = {
+  verification: {
+    google: "_QVRB2Q1vXow6EkXoTMWm1AAZN-mOLJRwPx8g8YolU4",
+  },
+}
+
 import Image from "next/image";
 import Link from "next/link";
 import styles from "./page.module.css";
