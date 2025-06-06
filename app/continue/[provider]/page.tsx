@@ -1,5 +1,7 @@
 // app/continue/[provider]/page.tsx
-"use client"
+
+"use client" // Marks this component as a React Client Component, enabling hooks like useEffect
+export const runtime = "edge" // Tell Next.js that this page has to be an edge function for cloudflare, not Node
 
 import { useEffect } from "react"
 import { useParams } from "next/navigation"
