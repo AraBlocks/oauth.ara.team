@@ -1,28 +1,29 @@
-//./auth.ts
-import NextAuth, { NextAuthConfig } from "next-auth"
-import GoogleProvider from "next-auth/providers/google"
+//./auth.ts - we made this file to configure Auth.js
+
+import NextAuth, {NextAuthConfig} from 'next-auth'//Auth.js's old name, still called NextAuth in npm and this code
+
+import GoogleProvider  from 'next-auth/providers/google'
+import TwitterProvider from 'next-auth/providers/twitter'
 
 export const authOptions: NextAuthConfig = {
-  // Use JWTs only—no database adapter:
-  session: { strategy: "jwt" },
 
-  // List the OAuth providers you’ve registered:
-  providers: [
-    GoogleProvider({}),//automatically brings in secrets named AUTH_GOOGLE_ID and AUTH_GOOGLE_SECRET
-  ],
+	session: {
+		strategy: 'jwt'//not using any database, sessions are stateless JWTs in cookies
+	},
+	secret: process.env.AUTH_SECRET,//signed by this random string we generated
 
-  events: {
-    async signIn({ user, account, profile, isNewUser }) {
-      console.log("✅ User signed in:", user.email, "via", account.provider)
-    },
-  },
+	providers: [
+		GoogleProvider({}),//automatically brings in secrets named AUTH_GOOGLE_ID and AUTH_GOOGLE_SECRET
+		TwitterProvider({}),
+	],
 
-  // This secret signs your JWTs. In Production, set NEXTAUTH_SECRET in Cloudflare Pages.
-  secret: process.env.AUTH_SECRET,
+	events: {
+		async signIn({user, account, profile, isNewUser}) {//our proof of control trigger
+			console.log("✅ User signed in:", user.email, "via", account.provider)
+		},
+	},
+
 }
 
-// Create a single handler instance; NextAuth will return an Edge‐compatible Response automatically.
-const handler = NextAuth(authOptions)
-
-// Destructure what you need for your Route Handler:
-export const { handlers, signIn, signOut, auth } = handler
+const handler = NextAuth(authOptions)//create our Auth.js (formerly NextAuth) handler instance to do OAuth for us, as we configured it above
+export const {handlers, signIn, signOut, auth} = handler//and exports its endpoints to Next.js

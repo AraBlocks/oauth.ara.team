@@ -4,6 +4,21 @@
 [Cloudflare Pages](https://developers.cloudflare.com/pages/) to use
 [Auth.js](https://authjs.dev/)
 
+```
+secrets
+./.env - intentionally blank (Next.js ignores it running locally; secrets live in .env.local)
+./.env.local - api keys for local development; deployed they come from the cloudflare dashboard
+
+configuration
+./tsconfig.json - added a line here so when we import "@/auth" in code files next knows to look in "./auth.ts"
+./auth.ts - Auth's main configuration file of options
+
+pages
+./app/page.js - site home page, added googlel site verification meta tags here
+./app/api/auth/[...nextauth]/route.ts - api handler route for all of Auth's endpoint routes
+./app/continue/[provider]/page.tsx - a page we made so a link here starts the Auth flow
+```
+
 *the rest is from c3*
 
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`c3`](https://developers.cloudflare.com/pages/get-started/c3).

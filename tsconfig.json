@@ -1,13 +1,13 @@
-//./tsconfig.json
+//./tsconfig.json - typescript configuration for .ts and .tsx files in the project
 {
   "compilerOptions": {
-    "target": "ES2017",
+    "target": "ES2017",//javascript version, pretty old actually
     "lib": [
       "dom",
       "dom.iterable",
       "esnext"
     ],
-    "allowJs": true,
+    "allowJs": true,//allow plain js files alongside all this type safety
     "skipLibCheck": true,
     "strict": false,
     "forceConsistentCasingInFileNames": true,
@@ -21,22 +21,22 @@
     "jsx": "preserve",
     "baseUrl": ".",
     "paths": {
-      "@/*":   ["./*"],
-      "@/auth": ["./auth.ts"]
+      "@/*":   ["./*"],//root alias comes with next.js to make component imports easier
+      "@/auth": ["./auth.ts"]//we added this alias so we can import from auth rather than going up a bunch of folders to get there
     },
     "plugins": [
       {
-        "name": "next"
+        "name": "next"//bring in next.js-specific typescript behavior
       }
     ]
   },
-  "include": [
+  "include": [//which files to type-check
     "next-env.d.ts",
     ".next/types/**/*.ts",
     "**/*.ts",
     "**/*.tsx"
   ],
-  "exclude": [
+  "exclude": [//and which to not type-check
     "node_modules"
   ]
 }
