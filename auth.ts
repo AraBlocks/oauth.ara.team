@@ -1,5 +1,6 @@
-//./auth.ts - we made this file to configure Auth.js
+//this implementation is [next-auth] in [Next.js] deploying to [oauth.ara.team] ~ standard bearer
 
+//this file is ./auth.ts
 import NextAuth, {NextAuthConfig} from 'next-auth'//Auth.js's old name, still called NextAuth in npm and this code
 
 import GoogleProvider  from 'next-auth/providers/google'
