@@ -1,24 +1,21 @@
-// app/continue/[provider]/page.tsx
+//in the [oauth.ara.team] [Next.js] repo using [next-auth], this is the file ./app/continue/[provider]/page.tsx
 
-"use client" // Marks this component as a React Client Component, enabling hooks like useEffect
-export const runtime = "edge" // Tell Next.js that this page has to be an edge function for cloudflare, not Node
+'use client'//mark this component as a React Client Component so we can use React hooks like useEffect
+export const runtime = 'edge'//tell Next.js that this page has to be an edge function for Cloudflare, not Node
 
-import { useEffect } from "react"
-import { useParams } from "next/navigation"
-import { signIn } from "next-auth/react"
+import {useEffect} from 'react'
+import {useParams} from 'next/navigation'
+import {signIn} from 'next-auth/react'
 
 export default function ContinuePage() {
-  const raw = useParams().provider // raw can be string | string[] | undefined
-  const provider = Array.isArray(raw) ? raw[0] : raw
+	const p = useParams().provider//p can be string | string[] | undefined
+	const provider = Array.isArray(p) ? p[0] : p
 
-  useEffect(() => {
-    if (provider) {
-      // This will POST to /api/auth/signin/[provider], handle CSRF,
-      // and redirect you to the provider’s consent page:
-      signIn(provider)
-    }
-  }, [provider])
+	useEffect(() => {
+		if (provider) {
+			signIn(provider, {callbackUrl: '/'})
+		}
+	}, [provider])
 
-  // Render nothing (blank page)
-  return null
+	return null//render nothing, a blank page
 }
